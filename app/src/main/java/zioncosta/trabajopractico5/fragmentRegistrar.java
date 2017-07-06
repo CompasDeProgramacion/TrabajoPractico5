@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,9 +19,13 @@ public class fragmentRegistrar extends Fragment implements View.OnClickListener
    EditText RegistroUsuarioo;
    EditText RegistroContraseñaa;
    EditText RegistroConfirmarContraseñaa;
+   EditText edtCantHamburguesas;
    String RegistroUsuario;
    String RegistroContraseña;
    String RegistroConfirmarContraseña;
+   String strCantHamburguesas;
+   int CantHamburgesas;
+   CheckBox McMejorQueBurger;
    MainActivity ActividadAnfitriona;
    
    public View onCreateView(LayoutInflater InfladorDeLayouts, ViewGroup GrupoDeLaVista, Bundle DatosRecibidos)
@@ -32,6 +37,13 @@ public class fragmentRegistrar extends Fragment implements View.OnClickListener
 	  RegistroUsuarioo = (EditText) VistaADevolver.findViewById(R.id.RegistroNombre);
 	  RegistroContraseñaa = (EditText) VistaADevolver.findViewById(R.id.RegistroContraseña);
 	  RegistroConfirmarContraseñaa = (EditText) VistaADevolver.findViewById(R.id.RegistroConfirmarContraseña);
+	  
+	  edtCantHamburguesas = (EditText) VistaADevolver.findViewById(R.id.CantidadHamburguesas);
+	  strCantHamburguesas = edtCantHamburguesas.toString();
+	  CantHamburgesas = Integer.parseInt(strCantHamburguesas);
+	  
+	  McMejorQueBurger = (CheckBox)VistaADevolver.findViewById(R.id.McMejorQueBurguer);
+	  
 	  Button BotonRegistroUsuario = (Button) VistaADevolver.findViewById(R.id.BotonRegistro);
 	  
 	  BotonRegistroUsuario.setOnClickListener(this);
@@ -41,7 +53,7 @@ public class fragmentRegistrar extends Fragment implements View.OnClickListener
    
    public void onClick(View VistaLlamadora)
    {
-	  //lleno los valores de las variables desoues de hacer click
+	  //Lleno los valores de las variables desoues de hacer click
 	  RegistroUsuario = RegistroUsuarioo.getText().toString();
 	  RegistroContraseña = RegistroContraseñaa.getText().toString();
 	  RegistroConfirmarContraseña = RegistroConfirmarContraseñaa.getText().toString();
