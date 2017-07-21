@@ -26,6 +26,7 @@ public class fragmentRegistrar extends Fragment implements View.OnClickListener
    String strCantHamburguesas;
    int CantHamburgesas;
    CheckBox McMejorQueBurger;
+   
    MainActivity ActividadAnfitriona;
    
    public View onCreateView(LayoutInflater InfladorDeLayouts, ViewGroup GrupoDeLaVista, Bundle DatosRecibidos)
@@ -39,9 +40,7 @@ public class fragmentRegistrar extends Fragment implements View.OnClickListener
 	  RegistroConfirmarContraseñaa = (EditText) VistaADevolver.findViewById(R.id.RegistroConfirmarContraseña);
 	  
 	  edtCantHamburguesas = (EditText) VistaADevolver.findViewById(R.id.CantidadHamburguesas);
-	  strCantHamburguesas = edtCantHamburguesas.toString();
-	  CantHamburgesas = Integer.parseInt(strCantHamburguesas);
-	  
+	  strCantHamburguesas = edtCantHamburguesas.getText().toString();
 	  McMejorQueBurger = (CheckBox)VistaADevolver.findViewById(R.id.McMejorQueBurguer);
 	  
 	  Button BotonRegistroUsuario = (Button) VistaADevolver.findViewById(R.id.BotonRegistro);
@@ -53,12 +52,13 @@ public class fragmentRegistrar extends Fragment implements View.OnClickListener
    
    public void onClick(View VistaLlamadora)
    {
-	  //Lleno los valores de las variables desoues de hacer click
 	  RegistroUsuario = RegistroUsuarioo.getText().toString();
 	  RegistroContraseña = RegistroContraseñaa.getText().toString();
 	  RegistroConfirmarContraseña = RegistroConfirmarContraseñaa.getText().toString();
-	  //ActividadAnfitriona.RecibirBoton(VistaLlamadora); E-S-T-O-E-S-I-M-P-O-R-T-A-N-T-E Sirve por si hay más de un botón en el fragment y quiero saber a cuál llama
-	  if (RegistroUsuario.trim().matches("") || RegistroContraseña.trim().matches("") || RegistroConfirmarContraseña.trim().matches(""))
+	  
+	  if (RegistroUsuario.trim().matches("") || RegistroContraseña.trim().matches("") ||
+		  RegistroConfirmarContraseña.trim().matches("") || strCantHamburguesas.trim().matches("")
+		 )
 	  {
 		 Toast MensajeError = Toast.makeText(getActivity(), "Uno o varios de los campos están vacíos. Por favor, verifique que todos los campos estén llenos antes de continuar", Toast.LENGTH_SHORT);
 		 MensajeError.show();
@@ -75,7 +75,8 @@ public class fragmentRegistrar extends Fragment implements View.OnClickListener
 	  }
 	  else
 	  {
-		 ActividadAnfitriona.AgregarABaseDatos(RegistroUsuario, RegistroContraseña);
+		 CantHamburgesas = Integer.parseInt(strCantHamburguesas.toString());
+	   	 ActividadAnfitriona.AgregarABaseDatos(RegistroUsuario, RegistroContraseña);
 		 ActividadAnfitriona.cambiarVista();
 	  }
    }

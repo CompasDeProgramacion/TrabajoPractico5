@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity
 {
    
    FragmentManager AdministradorDeFragments;
-   FragmentTransaction TransaccionesDeFragment;
+   FragmentTransaction TransaccionDeFragment;
    
    DbHelper AccesoDb;
    SQLiteDatabase BaseDeDatosRicolina;
@@ -32,10 +32,9 @@ public class MainActivity extends AppCompatActivity
 	  Fragment frgIngreso;
 	  frgIngreso = new fragmentInicio();
 	  
-	  TransaccionesDeFragment = AdministradorDeFragments.beginTransaction();
-	  TransaccionesDeFragment.replace(R.id.AlojadorDeFragment, frgIngreso);
-	  TransaccionesDeFragment.commit();
-	  
+	  TransaccionDeFragment = AdministradorDeFragments.beginTransaction();
+	  TransaccionDeFragment.replace(R.id.AlojadorDeFragment, frgIngreso);
+	  TransaccionDeFragment.commit();
    }
    
    public void botonEntrar(View Vista)
@@ -45,22 +44,11 @@ public class MainActivity extends AppCompatActivity
 	  Fragment frgIngreso;
 	  frgIngreso = new fragmentLogin();
 	  
-	  TransaccionesDeFragment = AdministradorDeFragments.beginTransaction();
-	  TransaccionesDeFragment.replace(R.id.AlojadorDeFragment, frgIngreso);
-	  TransaccionesDeFragment.commit();
+	  TransaccionDeFragment = AdministradorDeFragments.beginTransaction();
+	  TransaccionDeFragment.replace(R.id.AlojadorDeFragment, frgIngreso);
+	  TransaccionDeFragment.commit();
    }
    
-   public void botonRegistrar(View Vista)
-   {
-	  AdministradorDeFragments = getSupportFragmentManager();
-	  
-	  Fragment frgRegistrar;
-	  frgRegistrar = new fragmentRegistrar();
-	  
-	  TransaccionesDeFragment = AdministradorDeFragments.beginTransaction();
-	  TransaccionesDeFragment.replace(R.id.AlojadorDeFragment, frgRegistrar);
-	  TransaccionesDeFragment.commit();
-   }
    
    public void cambiarVista()
    {
@@ -69,22 +57,19 @@ public class MainActivity extends AppCompatActivity
 	  Fragment frgIngreso;
 	  frgIngreso = new fragmentLogin();
 	  
-	  TransaccionesDeFragment = AdministradorDeFragments.beginTransaction();
-	  TransaccionesDeFragment.replace(R.id.AlojadorDeFragment, frgIngreso);
-	  TransaccionesDeFragment.commit();
+	  TransaccionDeFragment = AdministradorDeFragments.beginTransaction();
+	  TransaccionDeFragment.replace(R.id.AlojadorDeFragment, frgIngreso);
+	  TransaccionDeFragment.commit();
    }
    
    /* Esta funcion muestra un Fragment pasado como parametro en un Holder pasado como parametro*/
    public void IrAFragment(Fragment FragmentAPasar, int IdDelHolder)
    {
-	  FragmentManager frgManager;
-	  FragmentTransaction frgTransaction;
+	  AdministradorDeFragments = getSupportFragmentManager();
 	  
-	  frgManager = getSupportFragmentManager();
-	  
-	  frgTransaction = frgManager.beginTransaction();
-	  frgTransaction.replace(IdDelHolder, FragmentAPasar);
-	  frgTransaction.commit();
+	  TransaccionDeFragment = AdministradorDeFragments.beginTransaction();
+	  TransaccionDeFragment.replace(IdDelHolder, FragmentAPasar);
+	  TransaccionDeFragment.commit();
    }
    
    public ArrayList<String> ListarUsuarios()

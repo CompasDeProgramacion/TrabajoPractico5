@@ -19,45 +19,62 @@ public class fragmentLogin extends Fragment implements View.OnClickListener
    EditText Contraseñaa;
    String NombreUsuario;
    String Contraseña;
+   Button BotonLogin;
+   Button BotonRegistrarse;
    MainActivity ActividadAnfitriona;
    
    public View onCreateView(LayoutInflater InfladorDeLayouts, ViewGroup GrupoDeLaVista, Bundle DatosRecibidos)
    {
 	  View VistaADevolver;
 	  VistaADevolver = InfladorDeLayouts.inflate(R.layout.fragment_login, GrupoDeLaVista, false);
+	  
 	  ActividadAnfitriona = (MainActivity) getActivity();
+	 
 	  NombreUsuarioo = (EditText) VistaADevolver.findViewById(R.id.LoginUsuario);
 	  Contraseñaa = (EditText) VistaADevolver.findViewById(R.id.LoginContrasena);
-	  Button BotonLogin = (Button) VistaADevolver.findViewById(R.id.BotonLogin);
+	  
+	  BotonLogin = (Button) VistaADevolver.findViewById(R.id.BotonLogin);
+	  BotonRegistrarse = (Button) VistaADevolver.findViewById(R.id.BotonRegistrarse);
+   	  
 	  BotonLogin.setOnClickListener(this);
+	  BotonRegistrarse.setOnClickListener(this);
 	  
 	  return VistaADevolver;
    }
    
    public void onClick(View VistaLlamadora)
    {
-	  NombreUsuario = NombreUsuarioo.getText().toString();
-	  Contraseña = Contraseñaa.getText().toString();
-	  if (NombreUsuario.trim().matches("") || Contraseña.trim().matches(""))
+	  if (VistaLlamadora.getId() == R.id.BotonLogin)
 	  {
-		 Toast MensajeError = Toast.makeText(getActivity(), "Uno o ambos de los campos están vacíos. Por favor, verifique que todos los campos estén llenos antes de continuar", Toast.LENGTH_SHORT);
-		 MensajeError.show();
-	  }
-	  else if (ActividadAnfitriona.Login(NombreUsuario, Contraseña))
-	  {
-		 Fragment frgSesionIniciada = new fragmentIniciado();
-		 ActividadAnfitriona.IrAFragment(frgSesionIniciada, R.id.AlojadorDeFragment);
+		 NombreUsuario = NombreUsuarioo.getText().toString();
+		 Contraseña = Contraseñaa.getText().toString();
+		 if (NombreUsuario.trim().matches("") || Contraseña.trim().matches(""))
+		 {
+			Toast MensajeError = Toast.makeText(getActivity(), "Uno o ambos de los campos están vacíos. Por favor, verifique que todos los campos estén llenos antes de continuar", Toast.LENGTH_SHORT);
+			MensajeError.show();
+		 }
+		 else if (ActividadAnfitriona.Login(NombreUsuario, Contraseña))
+		 {
+			Fragment frgSesionIniciada = new fragmentIniciado();
+			ActividadAnfitriona.IrAFragment(frgSesionIniciada, R.id.AlojadorDeFragment);
+		 }
+		 else
+		 {
+			Toast MensajeError = Toast.makeText(getActivity(), "Sorry bro no estás en la lista, a registrarse como corresponde la próxima", Toast.LENGTH_SHORT);
+			MensajeError.show();
+		 }
 	  }
 	  else
 	  {
-		 Toast MensajeError = Toast.makeText(getActivity(), "Sorry bro no estás en la lista, a registrarse como corresponde la próxima", Toast.LENGTH_SHORT);
-		 MensajeError.show();
+		 Fragment frgRegistrarse = new fragmentRegistrar();
+		 ActividadAnfitriona.IrAFragment(frgRegistrarse, R.id.AlojadorDeFragment);
 	  }
    }
    
-   public void botonRegistrar(View Vista)
+   /*public void botonRegistrar(View Vista)
    {
+	  
 	  ActividadAnfitriona.botonRegistrar(Vista);
-   }
+   }*/
 }
 

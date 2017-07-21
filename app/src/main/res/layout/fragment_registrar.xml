@@ -39,8 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Cuando vas al Mc, ¿cuántas hamburguesas te clavás?"
-        android:digits="0123456789"
-        android:inputType="numberDecimal"/>
+        android:maxLength="6"
+        android:inputType="number"/>
 
     <CheckBox
         android:id="@+id/McMejorQueBurguer"

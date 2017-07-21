@@ -35,6 +35,6 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="botonRegistrar"
+        android:id="@+id/BotonRegistrarse"
         android:text="Crear nuevo usuario"/>
 </LinearLayout>
