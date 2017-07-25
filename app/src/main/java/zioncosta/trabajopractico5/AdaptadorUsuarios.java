@@ -53,20 +53,21 @@ public class AdaptadorUsuarios extends BaseAdapter
 	  TextView UserName = (TextView) VistaADevolver.findViewById(R.id.TxtUserName);
 	  TextView CantHamburguesas = (TextView) VistaADevolver.findViewById(R.id.TxtCantHamburguesas);
 	  TextView McMejor = (TextView) VistaADevolver.findViewById(R.id.TxtMcMejorQueBurguer);
-   	  TextView UltimaConexion = (TextView) VistaADevolver.findViewById(R.id.TxtFechaUltimaConexion);
+	  TextView UltimaConexion = (TextView) VistaADevolver.findViewById(R.id.TxtFechaUltimaConexion);
 	  
 	  Usuario UsuarioGenial = new Usuario();
 	  UsuarioGenial = getItem(PosicionActual);
-   
+	  
 	  UserName.setText(UsuarioGenial.UserName);
-	  String McBetter = UsuarioGenial.McMejor ? "Usted, señor, sabe lo que es una buena hamburguesa" + Capo : "Ronald se está revolcando en su tumba" + NoCapo;
+	  String McBetter = UsuarioGenial.McMejor ? "Usted, señor, sabe lo que es una buena hamburguesa " + Capo : "Ronald se está revolcando en su tumba " + NoCapo;
 	  McMejor.setText(McBetter);
 	  CantHamburguesas.setText(UsuarioGenial.CantHamburguesas);
 	  UltimaConexion.setText(UsuarioGenial.FechaIngreso);
 	  
 	  return VistaADevolver;
    }
-   public String EmojiBruh (int Unicode)
+   
+   public String EmojiBruh(int Unicode)
    {
 	  return new String(Character.toChars(Unicode));
    }

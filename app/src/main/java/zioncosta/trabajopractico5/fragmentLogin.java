@@ -29,13 +29,13 @@ public class fragmentLogin extends Fragment implements View.OnClickListener
 	  VistaADevolver = InfladorDeLayouts.inflate(R.layout.fragment_login, GrupoDeLaVista, false);
 	  
 	  ActividadAnfitriona = (MainActivity) getActivity();
-	 
+	  
 	  NombreUsuarioo = (EditText) VistaADevolver.findViewById(R.id.LoginUsuario);
 	  Contraseñaa = (EditText) VistaADevolver.findViewById(R.id.LoginContrasena);
 	  
 	  BotonLogin = (Button) VistaADevolver.findViewById(R.id.BotonLogin);
 	  BotonRegistrarse = (Button) VistaADevolver.findViewById(R.id.BotonRegistrarse);
-   	  
+	  
 	  BotonLogin.setOnClickListener(this);
 	  BotonRegistrarse.setOnClickListener(this);
 	  
@@ -48,20 +48,25 @@ public class fragmentLogin extends Fragment implements View.OnClickListener
 	  {
 		 NombreUsuario = NombreUsuarioo.getText().toString();
 		 Contraseña = Contraseñaa.getText().toString();
+		 Usuario.UsuarioSuperCrack.UserName = NombreUsuario;
+		 Usuario.UsuarioSuperCrack.Password = Contraseña;
+		 baseMySql MySql = new baseMySql();
+		 MySql.Login.start();
+		 
 		 if (NombreUsuario.trim().matches("") || Contraseña.trim().matches(""))
 		 {
 			Toast MensajeError = Toast.makeText(getActivity(), "Uno o ambos de los campos están vacíos. Por favor, verifique que todos los campos estén llenos antes de continuar", Toast.LENGTH_SHORT);
 			MensajeError.show();
 		 }
-		 else if (ActividadAnfitriona.Login(NombreUsuario, Contraseña))
-		 {
-			Fragment frgSesionIniciada = new fragmentIniciado();
-			ActividadAnfitriona.IrAFragment(frgSesionIniciada, R.id.AlojadorDeFragment);
-		 }
-		 else
+		 else if (!MySql.Existe)
 		 {
 			Toast MensajeError = Toast.makeText(getActivity(), "Sorry bro no estás en la lista, a registrarse como corresponde la próxima", Toast.LENGTH_SHORT);
 			MensajeError.show();
+		 }
+		 else
+		 {
+			Fragment frgSesionIniciada = new fragmentIniciado();
+			ActividadAnfitriona.IrAFragment(frgSesionIniciada, R.id.AlojadorDeFragment);
 		 }
 	  }
 	  else

@@ -31,7 +31,7 @@ public class baseMySql
 		 
 		 RutaServidorMySql = "10.0.2.2";
 		 PuertoServidor = 3306;
-		 NombreBaseDatos = "db";
+		 NombreBaseDatos = "BaseDeDatos";
 		 NombreUsuario = "root";
 		 PasswordUsuario = "root";
 		 
@@ -127,12 +127,12 @@ public class baseMySql
 	  }
    };
    
-   public boolean LogInExito;
-   public Thread LogIn = new Thread()
+   public boolean Existe;
+   public Thread Login = new Thread()
    {
 	  public void run()
 	  {
-		 LogInExito = false;
+		 Existe = false;
 		 try
 		 {
 			String Validacion = ConectMeBabe();
@@ -143,7 +143,7 @@ public class baseMySql
 			   ResultSet Resultados = Instruccion.executeQuery(SQLLectura);
 			   if (Resultados.first())
 			   {
-				  LogInExito = true;
+				  Existe = true;
 				  int Id = Resultados.getInt(1);
 				  Date Fecha = new Date();
 				  Instruccion = Conexion.createStatement();
@@ -157,7 +157,35 @@ public class baseMySql
 			}
 		 } catch (SQLException e)
 		 {
-			
+			//gg
+		 }
+	  }
+   };
+   public Thread ExisteEnLaBaseDeDatos = new Thread()
+   {
+	  public void run()
+	  {
+		 Existe = false;
+		 try
+		 {
+			String Validacion = ConectMeBabe();
+			if (Validacion.compareTo("Funciono") == 0)
+			{
+			   Statement Instruccion = Conexion.createStatement();
+			   String SQLLectura = "select * from Usuarios WHERE UserName = " + Usuario.UsuarioSuperCrack.UserName + "AND Password = " + Usuario.UsuarioSuperCrack.Password;
+			   ResultSet Resultados = Instruccion.executeQuery(SQLLectura);
+			   if (Resultados.first())
+			   {
+				  Existe = true;
+			   }
+			   else
+			   {
+				  //AY MI DIOS!
+			   }
+			}
+		 } catch (SQLException e)
+		 {
+			//gg
 		 }
 	  }
    };

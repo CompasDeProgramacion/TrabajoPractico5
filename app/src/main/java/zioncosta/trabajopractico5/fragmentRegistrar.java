@@ -60,7 +60,12 @@ public class fragmentRegistrar extends Fragment implements View.OnClickListener
 	  RegistroContraseña = RegistroContraseñaa.getText().toString();
 	  RegistroConfirmarContraseña = RegistroConfirmarContraseñaa.getText().toString();
 	  strCantHamburguesas = edtCantHamburguesas.getText().toString();
-     
+	  
+	  Usuario.UsuarioSuperCrack.UserName = RegistroUsuario;
+	  Usuario.UsuarioSuperCrack.Password = RegistroContraseña;
+	  baseMySql MySql = new baseMySql();
+	  MySql.ExisteEnLaBaseDeDatos.start();
+	  
 	  if (RegistroUsuario.trim().matches("") || RegistroContraseña.trim().matches("") ||
 		  RegistroConfirmarContraseña.trim().matches("") || strCantHamburguesas.trim().matches("")
 		 )
@@ -73,11 +78,11 @@ public class fragmentRegistrar extends Fragment implements View.OnClickListener
 		 Toast MensajeError = Toast.makeText(getActivity(), "Las contraseñas no coinciden. Por favor, verifique que sean iguales. No tenemos todo el día, señor/a, somos Google", Toast.LENGTH_SHORT);
 		 MensajeError.show();
 	  }
-	  /*else if (ActividadAnfitriona.ExisteEnLaBaseDeDatos(RegistroUsuario))
+	  else if (!MySql.Existe)
 	  {
 		 Toast MensajeError = Toast.makeText(getActivity(), "Ya existe ese nombre de usuario. Qué lastima papu :c", Toast.LENGTH_SHORT);
 		 MensajeError.show();
-	  }*/
+	  }
 	  else
 	  {
 		 Date Fecha = new Date();
@@ -88,7 +93,7 @@ public class fragmentRegistrar extends Fragment implements View.OnClickListener
 		 Usuario.UsuarioSuperCrack.McMejor = McMejorQueBurger.isChecked();
 		 Usuario.UsuarioSuperCrack.CantHamburguesas = Integer.parseInt(strCantHamburguesas);
 		 
-		 baseMySql MySql = new baseMySql();
+		 MySql = new baseMySql();
 		 MySql.Registrar.start();
 		 
 		 Fragment frgLogin = new fragmentLogin();
