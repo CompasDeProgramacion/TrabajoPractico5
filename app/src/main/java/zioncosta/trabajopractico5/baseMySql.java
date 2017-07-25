@@ -18,7 +18,7 @@ public class baseMySql
 {
    Connection Conexion;
    
-   private String NiceConn()
+   private String ConectMeBabe()
    {
 	  try
 	  {
@@ -60,12 +60,12 @@ public class baseMySql
 	  {
 		 try
 		 {
-			String Validacion = NiceConn();
+			String Validacion = ConectMeBabe();
 			if (Validacion.compareTo("Funciono") == 0)
 			{
 			   Statement Instruccion = Conexion.createStatement();
 			   String SQLLectura =
-						"INSERT INTO `Usuarios`(`UserName`, `Password`, `FechaIngreso`, `Commie`, `SoretePromCm`) " +
+						"INSERT INTO `Usuarios`(`UserName`, `Password`, `FechaIngreso`, `CantHamburguesas`, `McMejor`) " +
 								 "VALUES (" + Usuario.UsuarioSuperCrack.UserName + "," + Usuario.UsuarioSuperCrack.Password + "," +
 								 Usuario.UsuarioSuperCrack.FechaIngreso + "," + Usuario.UsuarioSuperCrack.McMejor + "," +
 								 Usuario.UsuarioSuperCrack.CantHamburguesas + ")";
@@ -87,11 +87,11 @@ public class baseMySql
 		 ListUsers = new ArrayList<>();
 		 try
 		 {
-			String result = NiceConn();
-			if (result.compareTo("Eh ameo te salio todo re cheto gatito") == 0)
+			String Validacion = ConectMeBabe();
+			if (Validacion.compareTo("Funciono") == 0)
 			{
 			   Statement Instruccion = Conexion.createStatement();
-			   String SQLLectura = "select * from usuarios";
+			   String SQLLectura = "select * from Usuarios";
 			   ResultSet Resultados = Instruccion.executeQuery(SQLLectura);
 			   if (Resultados.first())
 			   {
@@ -116,10 +116,9 @@ public class baseMySql
 			   }
 			   else
 			   {
-				  Log.d("SelectUsuarios", "No hay nada");
+				  //Non avete niente, ragazzo
 			   }
 			}
-			
 			
 		 } catch (SQLException e)
 		 {
@@ -127,6 +126,7 @@ public class baseMySql
 		 }
 	  }
    };
+   
    public boolean LogInExito;
    public Thread LogIn = new Thread()
    {
@@ -135,24 +135,24 @@ public class baseMySql
 		 LogInExito = false;
 		 try
 		 {
-			String result = NiceConn();
-			if (result.compareTo("Eh ameo te salio todo re cheto gatito") == 0)
+			String Validacion = ConectMeBabe();
+			if (Validacion.compareTo("Funciono") == 0)
 			{
 			   Statement Instruccion = Conexion.createStatement();
-			   String SQLLectura = "select * from usuarios WHERE Nombre = " + Usuario.UsuarioSuperCrack.UserName + "AND Contrasena = " + Usuario.UsuarioSuperCrack.Password;
+			   String SQLLectura = "select * from Usuarios WHERE UserName = " + Usuario.UsuarioSuperCrack.UserName + "AND Password = " + Usuario.UsuarioSuperCrack.Password;
 			   ResultSet Resultados = Instruccion.executeQuery(SQLLectura);
 			   if (Resultados.first())
 			   {
 				  LogInExito = true;
-				  int id = Resultados.getInt(1);
-				  Date d = new Date();
+				  int Id = Resultados.getInt(1);
+				  Date Fecha = new Date();
 				  Instruccion = Conexion.createStatement();
-				  SQLLectura = "UPDATE `usuarios` SET `FechaIngreso`=" + d.toString() + " WHERE Id = " + id;
+				  SQLLectura = "UPDATE `Usuarios` SET `FechaIngreso`=" + Fecha.toString() + " WHERE Id = " + Id;
 				  Instruccion.executeQuery(SQLLectura);
 			   }
 			   else
 			   {
-				  Log.d("SelectUsuarios", "No hay nada");
+				  //AY MI DIOS!
 			   }
 			}
 		 } catch (SQLException e)

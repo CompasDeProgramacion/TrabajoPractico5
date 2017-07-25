@@ -15,6 +15,9 @@
         android:id="@+id/RegistroNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:imeOptions="actionNext"
+        android:maxLines="1"
+        android:inputType="text"
         android:hint="Ingrese nombre de usuario"
         android:textSize="20dp"/>
 
@@ -22,6 +25,7 @@
         android:id="@+id/RegistroContraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         android:hint="Ingrese una contraseña"
         android:inputType="textPassword"
         android:textSize="20dp"/>
@@ -30,9 +34,17 @@
         android:id="@+id/RegistroConfirmarContraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:imeOptions="actionNext"
+        android:maxLines="1"
         android:hint="Confirmar contraseña"
         android:inputType="textPassword"
         android:textSize="20dp"/>
+
+    <CheckBox
+        android:id="@+id/McMejorQueBurguer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="McDonald's es mejor que BurgerKing"/>
 
     <EditText
         android:id="@+id/CantidadHamburguesas"
@@ -41,13 +53,6 @@
         android:hint="Cuando vas al Mc, ¿cuántas hamburguesas te clavás?"
         android:maxLength="6"
         android:inputType="number"/>
-
-    <CheckBox
-        android:id="@+id/McMejorQueBurguer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="McDonald's es mejor que BurgerKing"/>
-
     <Button
         android:id="@+id/BotonRegistro"
         android:layout_width="match_parent"
